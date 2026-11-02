@@ -1,0 +1,25 @@
+# Site Dauer (static) – reguli Apache
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+
+# https + www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.sistemedauer.ro/$1 [R=301,L]
+
+# Adrese de pe site-ul vechi
+RewriteRule ^tamplarie-PVC\.html$ /tamplarie-pvc.html [R=301,L]
+RewriteRule ^balustrade-din-sticl(%C4%83|ă)\.html$ /balustrade-din-sticla.html [R=301,L,NE]
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

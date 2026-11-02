@@ -142,17 +142,39 @@
     });
   });
 
-  // Formulare (versiune de prezentare: nu trimit date)
+  // Formulare: trimise prin trimite.php pe e-mail
   d.querySelectorAll('form.demo').forEach(function (f) {
     var g = null;
     try { g = sessionStorage.getItem('dauer-ghid'); } catch (e) {}
     var msg = f.querySelector('textarea');
     if (g && msg && !msg.value) msg.value = 'Recomandarea din ghid: ' + g;
+    var hp = d.createElement('input');
+    hp.type = 'text'; hp.name = 'website'; hp.tabIndex = -1; hp.autocomplete = 'off';
+    hp.setAttribute('aria-hidden', 'true'); hp.style.cssText = 'position:absolute;left:-9999px';
+    f.appendChild(hp);
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var ok = f.querySelector('.ok');
-      if (ok) { ok.hidden = false; ok.focus && ok.focus(); }
-      f.reset();
+      var btn = f.querySelector('[type=submit]');
+      var data = new FormData();
+      f.querySelectorAll('input,select,textarea').forEach(function (el) {
+        if (el.type === 'checkbox' || el.type === 'submit') return;
+        var k = el.name || el.id;
+        if (k && el.value) data.append(k, el.value);
+      });
+      data.append('formular', f.querySelector('textarea') ? 'cerere' : 'newsletter');
+      data.append('pagina', d.title);
+      if (btn) btn.disabled = true;
+      fetch('trimite.php', { method: 'POST', body: data })
+        .then(function (r) { if (!r.ok) throw r; })
+        .then(function () {
+          var ok = f.querySelector('.ok');
+          if (ok) { ok.hidden = false; ok.focus && ok.focus(); }
+          f.reset();
+        })
+        .catch(function () {
+          alert('Mesajul nu a putut fi trimis. Te rugăm să ne suni la 0740 300 122 sau să scrii la vanzari@sistemedauer.ro.');
+        })
+        .then(function () { if (btn) btn.disabled = false; });
     });
   });
 
