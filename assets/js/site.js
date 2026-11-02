@@ -40,6 +40,14 @@
     check();
   }
 
+  // Film din prima pagină: se încarcă după pagină (până atunci rămâne poza de copertă)
+  var vlazy = d.querySelector('.hero-media iframe[data-src]');
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (vlazy && !reduce && !saveData) {
+    var loadVideo = function () { setTimeout(function () { vlazy.src = vlazy.getAttribute('data-src'); }, 600); };
+    if (d.readyState === 'complete') loadVideo(); else window.addEventListener('load', loadVideo);
+  }
+
   // Film din prima pagină: oprire / pornire
   var pause = d.querySelector('.hero-pause'), vframe = d.querySelector('.hero-media iframe');
   if (pause && vframe) {
@@ -65,11 +73,11 @@
       { q: 'Când vrei să începi?', o: ['Cât mai repede', 'În 1–3 luni', 'Peste 3 luni', 'Doar mă informez'] }
     ];
     var R = {
-      usa: { t: 'Ușă de intrare Inotherm', x: 'Pornește din configurator: alegi modelul, culoarea și sticla, iar noi îți facem oferta pentru varianta aleasă, cu montaj inclus.', i: 'assets/img/barbat-usa.jpg', u: 'configurator-usi.html' },
-      bal: { t: 'Balustrade din sticlă', x: 'Sisteme cu fixare în pardoseală, laterală sau în puncte, pentru balcoane, terase și scări. Stabilim varianta potrivită la măsurători.', i: 'assets/img/balustrada-scara.jpg', u: 'balustrade-din-sticla.html' },
-      umb: { t: 'Sisteme de umbrire', x: 'Rulouri exterioare, copertine și storuri care țin căldura afară vara și protejează intimitatea.', i: 'assets/img/umbrire.jpg', u: 'sisteme-de-umbrire.html' },
-      al: { t: 'Tâmplărie din aluminiu', x: 'Profile subțiri și rezistente, potrivite pentru ferestre mari, uși culisante și fațade. Lucrăm cu Schüco, Reynaers, Alumil și Aluprof.', i: 'assets/img/casa-moderna.jpg', u: 'tamplarie-aluminiu.html' },
-      pvc: { t: 'Tâmplărie PVC', x: 'Izolare termică bună la un preț accesibil, ușor de întreținut. Lucrăm cu Salamander, Rehau și Veka.', i: 'assets/img/interior-glisanta.jpg', u: 'tamplarie-pvc.html' }
+      usa: { t: 'Ușă de intrare Inotherm', x: 'Pornește din configurator: alegi modelul, culoarea și sticla, iar noi îți facem oferta pentru varianta aleasă, cu montaj inclus.', i: 'assets/img/barbat-usa.webp', u: 'configurator-usi.html' },
+      bal: { t: 'Balustrade din sticlă', x: 'Sisteme cu fixare în pardoseală, laterală sau în puncte, pentru balcoane, terase și scări. Stabilim varianta potrivită la măsurători.', i: 'assets/img/balustrada-scara.webp', u: 'balustrade-din-sticla.html' },
+      umb: { t: 'Sisteme de umbrire', x: 'Rulouri exterioare, copertine și storuri care țin căldura afară vara și protejează intimitatea.', i: 'assets/img/umbrire.webp', u: 'sisteme-de-umbrire.html' },
+      al: { t: 'Tâmplărie din aluminiu', x: 'Profile subțiri și rezistente, potrivite pentru ferestre mari, uși culisante și fațade. Lucrăm cu Schüco, Reynaers, Alumil și Aluprof.', i: 'assets/img/casa-moderna.webp', u: 'tamplarie-aluminiu.html' },
+      pvc: { t: 'Tâmplărie PVC', x: 'Izolare termică bună la un preț accesibil, ușor de întreținut. Lucrăm cu Salamander, Rehau și Veka.', i: 'assets/img/interior-glisanta.webp', u: 'tamplarie-pvc.html' }
     };
     var step = 0, ans = [];
     var panel = quiz.querySelector('.quiz-panel'), prog = quiz.querySelectorAll('.prog span'), lab = quiz.querySelector('.step-label');
