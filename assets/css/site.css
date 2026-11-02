@@ -344,3 +344,14 @@ section{position:relative}
 
 .prose a{overflow-wrap:anywhere;word-break:break-word}
 .prose{overflow-wrap:break-word}
+
+/* Întrebări frecvente */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;padding:20px 0;font-family:var(--display);font-size:19px;font-weight:600;line-height:1.35}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:26px;line-height:1;color:var(--k);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:3px solid var(--y);outline-offset:4px}
+.faq details p{margin:0 0 20px;font-size:17px;line-height:1.65;color:var(--ink2);max-width:68ch}
+.kv b a{color:inherit;text-decoration-color:var(--y);text-decoration-thickness:3px;text-underline-offset:4px}

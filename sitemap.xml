@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.sistemedauer.ro/</loc></url>
-  <url><loc>https://www.sistemedauer.ro/accesorii.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/balustrade-din-sticla.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/configurator-usi.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/contact.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/despre-noi.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/politica-cookie.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/politica-de-confidentialitate.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/regulament-concurs.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/servicii.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/sisteme-de-umbrire.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/solutii-complexe.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/tamplarie-aluminiu.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/tamplarie-pvc.html</loc></url>
-  <url><loc>https://www.sistemedauer.ro/termeni-si-conditii.html</loc></url>
+  <url><loc>https://www.sistemedauer.ro/</loc><lastmod>2026-11-02</lastmod><priority>1.0</priority></url>
+  <url><loc>https://www.sistemedauer.ro/termopane-targu-mures.html</loc><lastmod>2026-11-02</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.sistemedauer.ro/accesorii.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/balustrade-din-sticla.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/configurator-usi.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/contact.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/despre-noi.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/politica-cookie.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/politica-de-confidentialitate.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/regulament-concurs.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/servicii.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/sisteme-de-umbrire.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/solutii-complexe.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/tamplarie-aluminiu.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/tamplarie-pvc.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://www.sistemedauer.ro/termeni-si-conditii.html</loc><lastmod>2026-11-02</lastmod></url>
 </urlset>
