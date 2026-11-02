@@ -142,30 +142,41 @@
     });
   });
 
-  // Formulare: trimise prin trimite.php pe e-mail
+  // Formulare: trimise pe e-mail prin FormSubmit
+  var etichete = { nume: 'Nume', telefon: 'Telefon', email: 'E-mail', 'f-news': 'E-mail', tip: 'Interes', mesaj: 'Detalii' };
   d.querySelectorAll('form.demo').forEach(function (f) {
     var g = null;
     try { g = sessionStorage.getItem('dauer-ghid'); } catch (e) {}
     var msg = f.querySelector('textarea');
     if (g && msg && !msg.value) msg.value = 'Recomandarea din ghid: ' + g;
     var hp = d.createElement('input');
-    hp.type = 'text'; hp.name = 'website'; hp.tabIndex = -1; hp.autocomplete = 'off';
+    hp.type = 'text'; hp.name = '_honey'; hp.tabIndex = -1; hp.autocomplete = 'off';
     hp.setAttribute('aria-hidden', 'true'); hp.style.cssText = 'position:absolute;left:-9999px';
     f.appendChild(hp);
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = f.querySelector('[type=submit]');
-      var data = new FormData();
+      var cerere = !!f.querySelector('textarea');
+      var data = {
+        _subject: cerere ? 'Cerere nouă de pe sistemedauer.ro' : 'Abonare newsletter – sistemedauer.ro',
+        _template: 'table', _captcha: 'false', _honey: hp.value
+      };
       f.querySelectorAll('input,select,textarea').forEach(function (el) {
-        if (el.type === 'checkbox' || el.type === 'submit') return;
+        if (el.type === 'checkbox' || el.type === 'submit' || el === hp) return;
         var k = el.name || el.id;
-        if (k && el.value) data.append(k, el.value);
+        if (!k || !el.value) return;
+        data[etichete[k] || k.replace(/^f-/, '')] = el.value;
+        if (el.type === 'email') data._replyto = el.value;
       });
-      data.append('formular', f.querySelector('textarea') ? 'cerere' : 'newsletter');
-      data.append('pagina', d.title);
+      data.Pagina = d.title;
       if (btn) btn.disabled = true;
-      fetch('trimite.php', { method: 'POST', body: data })
-        .then(function (r) { if (!r.ok) throw r; })
+      fetch('https://formsubmit.co/ajax/vanzari@sistemedauer.ro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { if (String(j.success) !== 'true') throw j; })
         .then(function () {
           var ok = f.querySelector('.ok');
           if (ok) { ok.hidden = false; ok.focus && ok.focus(); }

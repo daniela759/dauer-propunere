@@ -1,1 +1,8 @@
-{"cleanUrls": false, "headers": [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]}]}
+{
+  "cleanUrls": false,
+  "redirects": [
+    { "source": "/tamplarie-PVC.html", "destination": "/tamplarie-pvc.html", "permanent": true },
+    { "source": "/balustrade-din-sticl%C4%83.html", "destination": "/balustrade-din-sticla.html", "permanent": true },
+    { "source": "/balustrade-din-sticlă.html", "destination": "/balustrade-din-sticla.html", "permanent": true }
+  ]
+}
