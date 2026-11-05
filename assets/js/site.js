@@ -186,6 +186,7 @@
         .then(function (r) { return r.json(); })
         .then(function (j) { if (String(j.success) !== 'true') throw j; })
         .then(function () {
+          track(cerere ? 'generate_lead' : 'sign_up', { form: cerere ? 'cerere_oferta' : 'newsletter', page_title: d.title });
           var ok = f.querySelector('.ok');
           if (ok) { ok.hidden = false; ok.focus && ok.focus(); }
           f.reset();
@@ -196,6 +197,23 @@
         .then(function () { if (btn) btn.disabled = false; });
     });
   });
+
+  // Măsurare Google Analytics: apeluri, e-mailuri, configurator
+  function track(ev, p) { try { if (window.gtag) window.gtag('event', ev, p || {}); } catch (e) {} }
+  d.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href');
+    if (/^tel:/i.test(h)) track('click_telefon', { link_url: h, page_title: d.title });
+    else if (/^mailto:/i.test(h)) track('click_email', { link_url: h, page_title: d.title });
+    else if (/configurator-usi\.html/.test(h)) track('click_configurator', { page_title: d.title });
+  });
+  var cfg = d.querySelector('iframe[src*="doordesigner.inotherm.com"]');
+  if (cfg) {
+    window.addEventListener('blur', function () {
+      setTimeout(function () { if (d.activeElement === cfg) track('configurator_folosit', { page_title: d.title }); }, 0);
+    });
+  }
 
   // Banner cookie
   var ck = d.querySelector('.cookie');
